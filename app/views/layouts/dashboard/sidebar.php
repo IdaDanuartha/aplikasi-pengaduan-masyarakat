@@ -11,8 +11,8 @@
 
     <hr class="sidebar-divider mb-0 mt-3">
 
-    <li class="nav-item active">
-        <a class="nav-link" href="#">
+    <li class="nav-item">
+        <a class="nav-link" href="<?= BASE_URL ?>/dashboard">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -26,22 +26,22 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-                <a class="collapse-item" href="#">Pengaduan Masuk</a>
-                <a class="collapse-item" href="#">Pengaduan Diproses</a>
-                <a class="collapse-item" href="#">Pengaduan Ditolak</a>
-                <a class="collapse-item" href="#">Pengaduan Selesai</a>
+                <a class="collapse-item" href="<?= BASE_URL ?>/pengaduan/masuk">Pengaduan Masuk</a>
+                <a class="collapse-item" href="<?= BASE_URL ?>/pengaduan/proses">Pengaduan Diproses</a>
+                <a class="collapse-item" href="<?= BASE_URL ?>/pengaduan/tolak">Pengaduan Ditolak</a>
+                <a class="collapse-item" href="<?= BASE_URL ?>/pengaduan/selesai">Pengaduan Selesai</a>
             </div>
         </div>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="<?= BASE_URL ?>/laporan">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Laporan</span></a>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="<?= BASE_URL ?>/pengguna">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Pengguna</span></a>
     </li>

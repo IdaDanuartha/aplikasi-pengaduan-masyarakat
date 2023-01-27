@@ -9,7 +9,7 @@ class User {
         $this->db = new Model();
     }
 
-    public function getUsers()
+    public function all()
     {
         $this->db->query("SELECT * FROM {$this->table}");
         return $this->db->all();
