@@ -11,7 +11,7 @@
 
     <hr class="sidebar-divider mb-0 mt-3">
 
-    <li class="nav-item">
+    <li class="nav-item <?= CURRENT_URL == BASE_URL . '/dashboard' || CURRENT_URL == BASE_URL . '/dashboard/index' ? 'active' : '' ?>">
         <a class="nav-link" href="<?= BASE_URL ?>/dashboard">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
@@ -26,24 +26,18 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-                <a class="collapse-item" href="<?= BASE_URL ?>/pengaduan/masuk">Pengaduan Masuk</a>
-                <a class="collapse-item" href="<?= BASE_URL ?>/pengaduan/proses">Pengaduan Diproses</a>
-                <a class="collapse-item" href="<?= BASE_URL ?>/pengaduan/tolak">Pengaduan Ditolak</a>
-                <a class="collapse-item" href="<?= BASE_URL ?>/pengaduan/selesai">Pengaduan Selesai</a>
+                <a class="collapse-item <?= CURRENT_URL == BASE_URL . '/pengaduan/masuk' || CURRENT_URL == BASE_URL . '/pengaduan/masuk/index' ? 'active' : '' ?>" href="<?= BASE_URL ?>/pengaduan/masuk">Pengaduan Masuk</a>
+                <a class="collapse-item <?= CURRENT_URL == BASE_URL . '/pengaduan/proses' || CURRENT_URL == BASE_URL . '/pengaduan/proses/index' ? 'active' : '' ?>" href="<?= BASE_URL ?>/pengaduan/proses">Pengaduan Diproses</a>
+                <a class="collapse-item <?= CURRENT_URL == BASE_URL . '/pengaduan/tolak' || CURRENT_URL == BASE_URL . '/pengaduan/tolak/index' ? 'active' : '' ?>" href="<?= BASE_URL ?>/pengaduan/tolak">Pengaduan Ditolak</a>
+                <a class="collapse-item <?= CURRENT_URL == BASE_URL . '/pengaduan/selesai' || CURRENT_URL == BASE_URL . '/pengaduan/selesai/index' ? 'active' : '' ?>" href="<?= BASE_URL ?>/pengaduan/selesai">Pengaduan Selesai</a>
             </div>
         </div>
     </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="<?= BASE_URL ?>/laporan">
+    <li class="nav-item <?= CURRENT_URL == BASE_URL . '/petugas' || CURRENT_URL == BASE_URL . '/petugas/index' ? 'active' : '' ?>">
+        <a class="nav-link" href="<?= BASE_URL ?>/petugas">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Laporan</span></a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" href="<?= BASE_URL ?>/pengguna">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Pengguna</span></a>
+            <span>Petugas</span></a>
     </li>
 
     <!-- Sidebar Toggler (Sidebar) -->

@@ -104,7 +104,7 @@
             <?php endforeach; ?>
         </div>
         <?php else : ?>
-            <div class="alert alert-danger" role="alert">
+            <div class="alert alert-warning" role="alert">
                 Belum ada pengaduan yang masuk
             </div>
         <?php endif; ?>
