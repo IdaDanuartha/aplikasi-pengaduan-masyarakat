@@ -3,6 +3,9 @@
 class DashboardController extends Controller {
     public function index()
     {
-       var_dump( $this->model('User')->getUsers());
+        $this->view("layouts/dashboard/header");
+        $this->view("layouts/dashboard/sidebar");
+        $this->view("pages/dashboard/index");
+        $this->view("layouts/dashboard/footer");
     }
 }
