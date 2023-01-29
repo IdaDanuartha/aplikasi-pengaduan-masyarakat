@@ -63,14 +63,6 @@
                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                         Profile
                     </a>
-                    <a class="dropdown-item" href="#">
-                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Settings
-                    </a>
-                    <a class="dropdown-item" href="#">
-                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Activity Log
-                    </a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -86,38 +78,55 @@
     <div class="container-fluid">
 
         <div class="d-sm-flex align-items-center mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Pengaduan Masuk</h1>                
+            <h1 class="h3 mb-0 text-gray-800">Detail Pengaduan Masuk</h1>                
         </div>
 
-        <?php if(count($data['pengaduan']) > 0) : ?>
-        <div class="row row-cols-5 g-4">
-                <?php foreach($data['pengaduan'] as $key => $value) : ?>
-                <div class="col">
-                    <div class="card position-relative" style="width: 18rem;">
-                    <div class="badge badge-success position-absolute" style="top: 10px; right: 10px;">
-                        <?= date_format(date_create($value['created_at']), 'd M Y') ?>
+        <div class="form-group mb-3 d-flex">
+            <img src="https://picsum.photos/300" class="rounded" alt="">
+            <div class="ml-3 p-3 rounded text-white bg-primary">
+                <div class="mb-3 d-flex">
+                    <h6 class="font-weight-bold mr-2">Tanggal Pengaduan : </h6>
+                    <h6><?= date_format(date_create($data['pengaduan']['created_at']), "d M Y") ?></h6>
+                </div>
+                <div class="mb-3 d-flex">
+                    <h6 class="font-weight-bold mr-2">Jam Pengaduan : </h6>
+                    <h6><?= date_format(date_create($data['pengaduan']['created_at']), "H.i") ?></h6>
+                </div>
+                <div class="mb-3 d-flex">
+                    <h6 class="font-weight-bold mr-2">Pelapor : </h6>
+                    <h6><?= $data['pengaduan']['nama'] ?></h6>
+                </div>
+                <div class="mb-3">
+                    <h6 class="font-weight-bold mr-2">Laporan : </h6>
+                    <h6><?= $data['pengaduan']['laporan'] ?></h6>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <form action="" method="post" class="mt-4">
+            <h5 class="font-weight-bold">Masukkan tanggapan anda</h5>
+            <div class="form-group my-3">
+                <h6>Status tanggapan</h6>
+                <div class="d-flex">
+                    <div class="d-flex mr-3">
+                        <input type="radio" name="status" id="setuju" value="setuju">
+                        <label for="setuju" class="ml-2 mt-1">Setuju</label>
                     </div>
-                        <img src="https://picsum.photos/400/300" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <div class="mb-1 d-flex">
-                                <h6 class="font-weight-bold mr-2">Pelapor : </h6>
-                                <h6><?= $value['nama'] ?></h6>
-                            </div>
-                            <div class="mb-3">
-                                <h6 class="font-weight-bold mr-2">Laporan </h6>
-                                <p>- <?= $value['laporan'] ?></p>
-                            </div>
-                            <a href="<?= BASE_URL ?>/pengaduandetail/masuk/<?= $value['id'] ?>" class="btn btn-primary">Detail</a>
-                        </div>
+                    <div class="d-flex">
+                        <input type="radio" name="status" id="tolak" value="tolak">
+                        <label for="tolak" class="ml-2 mt-1">Tolak</label>
                     </div>
                 </div>
-            <?php endforeach; ?>
-        </div>
-        <?php else : ?>
-            <div class="alert alert-warning" role="alert">
-                Belum ada pengaduan yang masuk
             </div>
-        <?php endif; ?>
+            <div class="form-group mb-3">
+                <label for="tanggapan" class="d-block">Tanggapan</label>
+                <textarea name="tanggapan" class="form-control" id="tanggapan" rows="7" style="width:
+                500px"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
 
 </div>
