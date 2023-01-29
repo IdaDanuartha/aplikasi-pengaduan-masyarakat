@@ -20,7 +20,7 @@ class RegisterController extends Controller {
             Flasher::setFlash("Username sudah terdaftar", "danger");
             redirect('register');
         } else {
-            if($this->model('User')->storeUser($_POST) > 0) {
+            if($this->model('User')->storeMasyarakat($_POST) > 0) {
                 Flasher::setFlash("Akun berhasil dibuat!", "success");
                 redirect('login');
             } else {            

@@ -21,16 +21,32 @@ class User {
         return $this->db->all();
     }
 
-    public function storeUser($data)
+    public function storeMasyarakat($data)
     {
         $hash = password_hash($data['password'], PASSWORD_DEFAULT);
 
-        $this->db->query("call storeUser(:nama, :username, :password, :level)");
+        $this->db->query("call storeMasyarakat(:nama, :username, :password, :level)");
 
         $this->db->bind('nama', $data['nama']);
         $this->db->bind('username', $data['username']);
         $this->db->bind('password', $hash);
         $this->db->bind('level', 'masyarakat');
+
+        $this->db->execute();
+        return $this->db->rowCount();
+    }
+
+    public function storePetugas($data, $fileName)
+    {
+        $hash = password_hash($data['password'], PASSWORD_DEFAULT);
+
+        $this->db->query("INSERT INTO users (nama, username, password, level, profile_picture) VALUES (:nama, :username, :password, :level, :profile_picture)");
+
+        $this->db->bind('nama', $data['nama']);
+        $this->db->bind('username', $data['username']);
+        $this->db->bind('password', $hash);
+        $this->db->bind('level', 'petugas');
+        $this->db->bind('profile_picture', $fileName);
 
         $this->db->execute();
         return $this->db->rowCount();
