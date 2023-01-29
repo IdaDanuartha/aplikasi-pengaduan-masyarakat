@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 26, 2023 at 04:19 PM
+-- Generation Time: Jan 29, 2023 at 09:03 AM
 -- Server version: 5.7.33
 -- PHP Version: 8.1.4
 
@@ -21,6 +21,20 @@ SET time_zone = "+00:00";
 -- Database: `aplikasi_pengaduan_masyarakat`
 --
 
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `getPetugas` ()   BEGIN
+SELECT * FROM users WHERE level='petugas';
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `storeUser` (IN `nama` VARCHAR(150), IN `username` VARCHAR(100), IN `password` VARCHAR(255), IN `level` ENUM('admin','petugas','masyarakat'))   BEGIN
+INSERT INTO users (nama, username, password, level) VALUES(nama, username, password, level);
+END$$
+
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -31,11 +45,18 @@ CREATE TABLE `pengaduan` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `laporan` text NOT NULL,
-  `photo` varchar(255) NOT NULL,
-  `status` enum('proses','selesai','tolak') NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `gambar` varchar(255) NOT NULL,
+  `status` enum('masuk','proses','selesai','tolak') NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pengaduan`
+--
+
+INSERT INTO `pengaduan` (`id`, `user_id`, `laporan`, `gambar`, `status`, `created_at`, `updated_at`) VALUES
+(3, 1, 'Laporan hari ini', '-', 'selesai', '2023-01-29 08:31:46', '2023-01-29 08:31:46');
 
 -- --------------------------------------------------------
 
@@ -52,6 +73,13 @@ CREATE TABLE `tanggapan` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tanggapan`
+--
+
+INSERT INTO `tanggapan` (`id`, `pengaduan_id`, `user_id`, `tanggapan`, `created_at`, `updated_at`) VALUES
+(3, 3, 7, 'asssad', '2023-01-29 00:53:39', '2023-01-29 00:53:39');
+
 -- --------------------------------------------------------
 
 --
@@ -60,21 +88,19 @@ CREATE TABLE `tanggapan` (
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `name` varchar(150) NOT NULL,
+  `nama` varchar(150) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `level` enum('admin','petugas','masyakarat') NOT NULL,
-  `profile_picture` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `level` enum('admin','petugas','masyarakat') NOT NULL DEFAULT 'masyarakat',
+  `profile_picture` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `username`, `password`, `level`, `profile_picture`, `created_at`, `updated_at`) VALUES
-(1, 'Ida Danuartha', 'danuart14', '123456', 'admin', '-', '2023-01-26 15:51:56', '2023-01-26 15:51:56');
+INSERT INTO `users` (`id`, `nama`, `username`, `password`, `level`, `profile_picture`) VALUES
+(1, 'Admin', 'admin', '$2y$10$tzHICviHUbKncWFer.OOo.7HTJ0bHxV8jLk2aPSu5pw.wy.XjuAqi', 'admin', NULL);
 
 --
 -- Indexes for dumped tables
@@ -106,19 +132,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `pengaduan`
 --
 ALTER TABLE `pengaduan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tanggapan`
 --
 ALTER TABLE `tanggapan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

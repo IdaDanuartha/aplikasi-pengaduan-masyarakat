@@ -6,28 +6,31 @@
             <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Create New Account</h1>
             </div>
-            <form class="user">
+            <div class="my-3">
+                <?php Flasher::flash(); ?>
+            </div>
+            <form class="user" action="<?= BASE_URL ?>/register/process" method="post">
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user"
-                        id="name"
+                        id="name" name="nama"
                         placeholder="Enter Name">
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user"
-                        id="username"
+                        id="username" name="username"
                         placeholder="Enter Username">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control form-control-user"
+                    <input type="password" class="form-control form-control-user" name="password"
                         id="password" placeholder="Enter Password">
                 </div>
-                <div class="form-group">
-                    <input type="confirm_password" class="form-control form-control-user"
+                <!-- <div class="form-group">
+                    <input type="confirm_password" name="confirm_password" class="form-control form-control-user"
                         id="confirm_password" placeholder="Enter Confirmation Password">
-                </div>
-                <a href="<?= BASE_URL ?>/login" class="btn btn-primary btn-user btn-block">
+                </div> -->
+                <button type="submit" class="btn btn-primary btn-user btn-block">
                     Register
-                </a>
+                </button>
                 <div class="mt-2">
                     <span style="font-size: 14px;">Already have an account? <a href="<?= BASE_URL ?>/login">Sign In Now!</a></span>
                 </div>

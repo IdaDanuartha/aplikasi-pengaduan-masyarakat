@@ -4,16 +4,19 @@
     <div class="col-lg-6">
         <div class="p-5">
             <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">Welcome</h1>
+                <h1 class="h4 text-gray-900 mb-4">Welcome Back</h1>
             </div>
-            <form class="user">
+            <div class="my-3">
+                <?php Flasher::flash(); ?>
+            </div>
+            <form class="user" action="<?= BASE_URL ?>/login/process" method="post">
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user"
-                        id="username"
+                        id="username" name="username"
                         placeholder="Enter Username">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control form-control-user"
+                    <input type="password" class="form-control form-control-user" name="password"
                         id="password" placeholder="Enter Password">
                 </div>
                 <div class="form-group">
@@ -23,9 +26,9 @@
                             Me</label>
                     </div>
                 </div>
-                <a href="<?= BASE_URL ?>/dashboard" class="btn btn-primary btn-user btn-block">
+                <button type="submit" class="btn btn-primary btn-user btn-block">
                     Login
-                </a>
+                </button>
                 <div class="mt-2">
                     <span style="font-size: 14px;">Doesn't have an account? <a href="<?= BASE_URL ?>/register">Create new account!</a></span>
                 </div>
