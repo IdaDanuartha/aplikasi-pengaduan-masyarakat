@@ -13,10 +13,11 @@ class Pengaduan {
 
     public function all()
     {
-        $this->db->query("SELECT {$this->table}.*, {$this->table2}.nama 
+        $this->db->query("SELECT {$this->table}.*, {$this->table2}.nama
                             FROM {$this->table} 
                             INNER JOIN {$this->table2} 
                             ON {$this->table2}.id = {$this->table}.user_id
+                            ORDER BY created_at DESC                            
                         ");        
 
         return $this->db->all();
@@ -31,6 +32,7 @@ class Pengaduan {
                             LEFT JOIN {$this->table3} 
                             ON {$this->table3}.pengaduan_id = {$this->table}.id 
                             WHERE {$this->table}.status = :status
+                            ORDER BY created_at DESC
                         ");
         $this->db->bind("status", $status);
         
@@ -39,7 +41,12 @@ class Pengaduan {
 
     public function getByUser()
     {
-        $this->db->query("SELECT * FROM {$this->table} WHERE user_id = :user_id");
+        $this->db->query("SELECT {$this->table}.*, {$this->table3}.tanggapan FROM {$this->table} 
+                            LEFT JOIN {$this->table3} 
+                            ON {$this->table3}.pengaduan_id = {$this->table}.id
+                            WHERE {$this->table}.user_id = :user_id
+                            ORDER BY created_at DESC
+                        ");
         $this->db->bind("user_id", $_SESSION['user_session']['id']);
         
         return $this->db->all();
@@ -90,7 +97,7 @@ class Pengaduan {
                             WHERE id=:id");
 
         $this->db->bind("laporan", $data['laporan']);
-        $this->db->bind("gambar", $fileName);
+        $this->db->bind("gambar", $fileName ?? $data['old_gambar']);
         $this->db->bind("updated_at", date('Y-m-d H:i:s'));
         $this->db->bind("id", $id);
         $this->db->execute();

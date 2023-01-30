@@ -3,19 +3,21 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center mt-3" href="#">
-        <!-- <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-laugh-wink"></i>
-        </div> -->
-        <div class="sidebar-brand-text mx-3">Aplikasi Pengaduan Masyarakat</div>
+        <div class="sidebar-brand-icon">
+            <img src="<?= BASE_URL ?>/assets/img/logo.png" width="60" alt="">
+        </div>
+        <div class="sidebar-brand-text mx-3">Pengaduan Masyarakat</div>
     </a>
 
-    <hr class="sidebar-divider mb-0 mt-3">
+    <hr class="sidebar-divider mb-0 mt-2">
 
-    <li class="nav-item <?= CURRENT_URL == BASE_URL . '/dashboard' || CURRENT_URL == BASE_URL . '/dashboard/index' ? 'active' : '' ?>">
-        <a class="nav-link" href="<?= BASE_URL ?>/dashboard">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span></a>
-    </li>
+    <?php if($_SESSION['user_session']['level'] !== 'masyarakat') : ?>
+        <li class="nav-item <?= CURRENT_URL == BASE_URL . '/dashboard' || CURRENT_URL == BASE_URL . '/dashboard/index' ? 'active' : '' ?>">
+            <a class="nav-link" href="<?= BASE_URL ?>/dashboard">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span></a>
+        </li>
+    <?php endif; ?>
 
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"

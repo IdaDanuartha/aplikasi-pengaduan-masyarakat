@@ -4,7 +4,7 @@ class RegisterController extends Controller {
     public function index()
     {
         if(!isset($_SESSION['login'])) {
-            $data['title'] = "Register page";
+            $data['title'] = "Register";
         
             $this->view("layouts/auth/header", $data);
             $this->view("pages/auth/register");

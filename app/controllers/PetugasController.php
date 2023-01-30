@@ -4,6 +4,7 @@ class PetugasController extends Controller {
     public function index()
     {
         if(isset($_SESSION['login'])) {
+            $data['title'] = 'Data Petugas';
             $data['petugas'] = $this->model('User')->getPetugas();
 
             $this->view("layouts/dashboard/header", $data);
@@ -18,7 +19,8 @@ class PetugasController extends Controller {
     public function create()
     {
         if(isset($_SESSION['login'])) {
-            $this->view("layouts/dashboard/header");
+            $data['title'] = 'Tambah Petugas';
+            $this->view("layouts/dashboard/header", $data);
             $this->view("layouts/dashboard/sidebar");
             $this->view("pages/petugas/create");
             $this->view("layouts/dashboard/footer");

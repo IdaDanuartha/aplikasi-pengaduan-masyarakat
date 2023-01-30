@@ -4,7 +4,7 @@ class LoginController extends Controller {
     public function index()
     {
         if(!isset($_SESSION['login'])) {
-            $data['title'] = "Login page";
+            $data['title'] = "Login";
         
             $this->view("layouts/auth/header", $data);
             $this->view("pages/auth/login");

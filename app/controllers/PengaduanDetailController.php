@@ -4,6 +4,7 @@ class PengaduanDetailController extends Controller {
     public function masuk($id)
     {
         if(isset($_SESSION['login'])) {
+            $data['title'] = 'Pengaduan Detail';
             $data['pengaduan'] = $this->model("Pengaduan")->pengaduanDetail($id);
 
             $this->view("layouts/dashboard/header", $data);

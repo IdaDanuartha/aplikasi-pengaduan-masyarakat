@@ -1,6 +1,7 @@
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <form action="<?= BASE_URL ?>/pengaduan/update/<?= $data['pengaduan']['id'] ?>" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="old_gambar" value="<?= $data['pengaduan']['gambar'] ?>" class="form-control mt-3">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Edit Pengaduan</h6>
             </div> 

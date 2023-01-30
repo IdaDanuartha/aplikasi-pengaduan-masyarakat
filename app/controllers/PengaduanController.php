@@ -5,6 +5,7 @@ class PengaduanController extends Controller {
     public function masyarakat()
     {
         if(isset($_SESSION['login'])) {
+            $data['title'] = 'Pengaduan saya';
             $data['pengaduan'] = $this->model("Pengaduan")->getByUser();
 
             $this->view("layouts/dashboard/header", $data);
@@ -19,7 +20,8 @@ class PengaduanController extends Controller {
     public function tambah()
     {
         if(isset($_SESSION['login'])) {
-            $this->view("layouts/dashboard/header");
+            $data['title'] = 'Tambah Pengaduan';
+            $this->view("layouts/dashboard/header", $data);
             $this->view("layouts/dashboard/sidebar");
             $this->view("pages/pengaduan/masyarakat/tambah");
             $this->view("layouts/dashboard/footer");
@@ -31,9 +33,10 @@ class PengaduanController extends Controller {
     public function edit($id)
     {
         if(isset($_SESSION['login'])) {
+            $data['title'] = 'Edit pengaduan';
             $data['pengaduan'] = $this->model("Pengaduan")->edit($id);
 
-            $this->view("layouts/dashboard/header");
+            $this->view("layouts/dashboard/header", $data);
             $this->view("layouts/dashboard/sidebar");
             $this->view("pages/pengaduan/masyarakat/edit", $data);
             $this->view("layouts/dashboard/footer");
@@ -45,6 +48,7 @@ class PengaduanController extends Controller {
     public function masuk()
     {
         if(isset($_SESSION['login'])) {
+            $data['title'] = 'Pengaduan Masuk';
             $data['pengaduan'] = $this->model("Pengaduan")->getByStatus('masuk');
 
             $this->view("layouts/dashboard/header", $data);
@@ -59,6 +63,7 @@ class PengaduanController extends Controller {
     public function proses()
     {
         if(isset($_SESSION['login'])) {
+            $data['title'] = 'Pengaduan Diproses';
             $data['pengaduan'] = $this->model("Pengaduan")->getByStatus('proses');
 
             $this->view("layouts/dashboard/header", $data);
@@ -73,6 +78,7 @@ class PengaduanController extends Controller {
     public function tolak()
     {
         if(isset($_SESSION['login'])) {
+            $data['title'] = 'Pengaduan Ditolak';
             $data['pengaduan'] = $this->model("Pengaduan")->getByStatus('tolak');
 
             $this->view("layouts/dashboard/header", $data);
@@ -87,6 +93,7 @@ class PengaduanController extends Controller {
     public function selesai()
     {
         if(isset($_SESSION['login'])) {
+            $data['title'] = 'Pengaduan Selesai';
             $data['pengaduan'] = $this->model("Pengaduan")->getByStatus('selesai');
 
             $this->view("layouts/dashboard/header", $data);
@@ -130,11 +137,11 @@ class PengaduanController extends Controller {
         $pengaduan = $this->model("Pengaduan")->edit($id);
 
         // File name
-        $filename = $pengaduan['gambar'];        
+        $filename = null;        
         if(isset($_FILES['gambar'])) {
             $filename = date("dmyhis") . '_' . basename($_FILES['gambar']['name']);
         }
-    
+        
         // Location
         $target_file = "./uploads/pengaduan/$filename";
 
@@ -153,8 +160,8 @@ class PengaduanController extends Controller {
                 if(isset($_FILES['gambar'])) {
                     if(file_exists($path)) {  
                         unlink($path);                      
-                        move_uploaded_file($_FILES['gambar']['tmp_name'], $target_file);
                     }
+                    move_uploaded_file($_FILES['gambar']['tmp_name'], $target_file);
                 }
             }
             Flasher::setFlash("Pengaduan berhasil diubah", "success");

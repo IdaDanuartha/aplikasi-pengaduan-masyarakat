@@ -8,8 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="shortcut icon" href="<?= BASE_URL ?>/assets/img/logo.png" type="image/x-icon">
 
-    <title>SB Admin 2 - Login</title>
+    <title><?= $data['title'] ?> | Pengaduan Masyarakat</title>
 
     <!-- Custom fonts for this template-->
     <link href="<?= BASE_URL ?>/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
