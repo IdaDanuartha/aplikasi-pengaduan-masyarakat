@@ -29,9 +29,30 @@
                             <td>
                                 <a href="#" class="btn btn-primary btn-sm mr-2">Detail</a>
                                 <a href="<?= BASE_URL ?>/pengaduan/edit/<?= $value['id'] ?>" class="btn btn-warning btn-sm mr-2">Edit</a>
-                                <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                                <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletePengaduan<?= $value['id'] ?>Modal">Delete</a>
                             </td>
                         </tr>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="deletePengaduan<?= $value['id'] ?>Modal" tabindex="-1" aria-labelledby="deletePengaduan<?= $value['id'] ?>ModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deletePengaduan<?= $value['id'] ?>ModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Apakah kamu yakin ingin menghapus data pengaduan ini?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <a href="<?= BASE_URL ?>/pengaduan/destroy/<?= $value['id'] ?>" type="button" class="btn btn-danger">Hapus</a>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
                     <?php endforeach; ?>
                 </tbody>
             </table>

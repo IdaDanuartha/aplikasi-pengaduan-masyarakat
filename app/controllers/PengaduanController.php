@@ -1,6 +1,7 @@
 <?php
 
 class PengaduanController extends Controller {
+
     public function masyarakat()
     {
         if(isset($_SESSION['login'])) {
@@ -124,30 +125,62 @@ class PengaduanController extends Controller {
         }
     }
 
-    public function update()
+    public function update($id)
     {
+        $pengaduan = $this->model("Pengaduan")->edit($id);
+
         // File name
-        $filename = date("dmyhis") . '_' . basename($_FILES['gambar']['name']);
+        $filename = $pengaduan['gambar'];        
+        if(isset($_FILES['gambar'])) {
+            $filename = date("dmyhis") . '_' . basename($_FILES['gambar']['name']);
+        }
     
         // Location
         $target_file = "./uploads/pengaduan/$filename";
 
+        // Path
+        $path = "./uploads/pengaduan/" . $pengaduan['gambar'];        
+
         // file extension
         $file_extension = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-                
+           
         // Valid image extension
         $valid_extension = ["png","jpeg","jpg","svg","webp"];
-    
-        if(in_array($file_extension, $valid_extension)) {
-            if($this->model("Pengaduan")->store($_POST, $filename) > 0) {
+                
+        if($this->model("Pengaduan")->update($id, $_POST, $filename) > 0) {
+            if(in_array($file_extension, $valid_extension)) {
                 // Upload file            
-                move_uploaded_file($_FILES['gambar']['tmp_name'], $target_file);
-                Flasher::setFlash("Pengaduan berhasil dilaporkan", "success");
-                redirect("pengaduan/masyarakat");
-            } else {
-                Flasher::setFlash("Pengaduan gagal ditambahkan", "danger");
-                redirect("pengaduan/tambah");
+                if(isset($_FILES['gambar'])) {
+                    if(file_exists($path)) {  
+                        unlink($path);                      
+                        move_uploaded_file($_FILES['gambar']['tmp_name'], $target_file);
+                    }
+                }
             }
+            Flasher::setFlash("Pengaduan berhasil diubah", "success");
+            redirect("pengaduan/masyarakat");
+        } else {
+            Flasher::setFlash("Pengaduan gagal diubah", "danger");
+            redirect("pengaduan/edit/$id");
         }
+    }
+
+    public function destroy($id)
+    {
+        $pengaduan = $this->model("Pengaduan")->edit($id);
+
+        // File name
+        $filename = $pengaduan['gambar'];        
+
+        // Path
+        $path = "./uploads/pengaduan/" . $filename;        
+             
+        if($this->model("Pengaduan")->destroy($id) > 0) { 
+            unlink($path);           
+            Flasher::setFlash("Pengaduan berhasil dihapus", "success");
+        } else {
+            Flasher::setFlash("Pengaduan gagal dihapus", "danger");
+        }
+        redirect("pengaduan/masyarakat");
     }
 }

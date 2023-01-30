@@ -1,12 +1,12 @@
 <div class="container-fluid">
     <div class="card shadow mb-4">
-        <form action="<?= BASE_URL ?>/pengaduan/update" method="post" enctype="multipart/form-data">
+        <form action="<?= BASE_URL ?>/pengaduan/update/<?= $data['pengaduan']['id'] ?>" method="post" enctype="multipart/form-data">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Edit Pengaduan</h6>
             </div> 
             <div class="py-3">
                 <div class="form-group mb-4 col-md-6 col-12">
-                    <img src="https://picsum.photos/200" alt="" class="rounded">
+                    <img src="<?= BASE_URL ?>/uploads/pengaduan/<?= $data['pengaduan']['gambar'] ?>" alt="" width="200" class="rounded mb-4">                    
                     <input type="file" name="gambar" class="form-control mt-3">
                 </div>
                 <div class="form-group mb-4 col-md-6 col-12">

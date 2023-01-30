@@ -80,4 +80,30 @@ class Pengaduan {
 
         return $this->db->single();
     }
+
+    public function update($id, $data, $fileName)
+    {
+        $this->db->query("UPDATE {$this->table} SET
+                            laporan=:laporan,
+                            gambar=:gambar,
+                            updated_at=:updated_at
+                            WHERE id=:id");
+
+        $this->db->bind("laporan", $data['laporan']);
+        $this->db->bind("gambar", $fileName);
+        $this->db->bind("updated_at", date('Y-m-d H:i:s'));
+        $this->db->bind("id", $id);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function destroy($id)
+    {
+        $this->db->query("DELETE FROM {$this->table} WHERE id=:id");
+        $this->db->bind("id", $id);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
 }
