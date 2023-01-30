@@ -19,7 +19,11 @@ class LoginController extends Controller {
         if($this->model('User')->findUserByUsername($_POST['username'])) {
             $loginInUser = $this->model('User')->login($_POST);
             if($loginInUser) {
-                redirect("dashboard");
+                if($loginInUser['level'] === 'admin') {
+                    redirect("dashboard");
+                } else {
+                    redirect("profile");
+                }
             } else {
                 Flasher::setFlash("Username atau password salah", "danger");
                 redirect("login");

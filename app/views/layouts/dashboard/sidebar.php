@@ -19,28 +19,32 @@
         </li>
     <?php endif; ?>
 
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-            aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Pengaduan</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <?php if($_SESSION['user_session']['level'] === 'masyarakat') : ?>
+        <li class="nav-item <?= CURRENT_URL == BASE_URL . '/pengaduan/masyarakat' ? 'active' : '' ?>">
+            <a class="nav-link" href="<?= BASE_URL ?>/pengaduan/masyarakat">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Pengaduan Saya</span></a>
+        </li>
+    <?php endif; ?>
+
+    <?php if($_SESSION['user_session']['level'] !== 'masyarakat') : ?>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Pengaduan</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-                <?php if($_SESSION['user_session']['level'] !== 'masyarakat') : ?>
                     <a class="collapse-item <?= CURRENT_URL == BASE_URL . '/pengaduan/masuk' ? 'active' : '' ?>" href="<?= BASE_URL ?>/pengaduan/masuk">Pengaduan Masuk</a>
                     <a class="collapse-item <?= CURRENT_URL == BASE_URL . '/pengaduan/proses' ? 'active' : '' ?>" href="<?= BASE_URL ?>/pengaduan/proses">Pengaduan Diproses</a>
                     <a class="collapse-item <?= CURRENT_URL == BASE_URL . '/pengaduan/tolak' ? 'active' : '' ?>" href="<?= BASE_URL ?>/pengaduan/tolak">Pengaduan Ditolak</a>
                     <a class="collapse-item <?= CURRENT_URL == BASE_URL . '/pengaduan/selesai' ? 'active' : '' ?>" href="<?= BASE_URL ?>/pengaduan/selesai">Pengaduan Selesai</a>
-                <?php endif; ?>
-                <?php if($_SESSION['user_session']['level'] === 'masyarakat') : ?>
-                    <a class="collapse-item <?= CURRENT_URL == BASE_URL . '/pengaduan/masyarakat' ? 'active' : '' ?>" href="<?= BASE_URL ?>/pengaduan/masyarakat">Pengaduan Saya</a>
-                    <a class="collapse-item <?= CURRENT_URL == BASE_URL . '/pengaduan/tambah' ? 'active' : '' ?>" href="<?= BASE_URL ?>/pengaduan/tambah">Tambah Pengaduan</a>
-                <?php endif; ?>
+                </div>
             </div>
-        </div>
-    </li>
+        </li>
+    <?php endif; ?>                
 
     <?php if($_SESSION['user_session']['level'] === 'admin') : ?>
         <li class="nav-item <?= CURRENT_URL == BASE_URL . '/petugas' || CURRENT_URL == BASE_URL . '/petugas/index' ? 'active' : '' ?>">
@@ -81,7 +85,7 @@
             </button>
 
             <!-- Topbar Search -->
-            <form
+            <!-- <form
                 class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                 <div class="input-group">
                     <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
@@ -92,7 +96,7 @@
                         </button>
                     </div>
                 </div>
-            </form>
+            </form> -->
 
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
@@ -126,17 +130,17 @@
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['user_session']['nama'] ?></span>
-                        <img class="img-profile rounded-circle"
-                            src="<?= BASE_URL ?>/assets/img/undraw_profile.svg">
+                        <?php if(isset($_SESSION['user_session']['gambar'])) : ?>
+                            <img class="img-profile rounded-circle"
+                            src="<?= BASE_URL ?>/uploads/users/<?= $_SESSION['user_session']['gambar'] ?>">
+                        <?php else : ?>
+                            <img class="img-profile rounded-circle"
+                            src="<?= BASE_URL ?>/assets/img/undraw_profile_2.svg">
+                        <?php endif; ?>
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                        aria-labelledby="userDropdown">
-                        <a class="dropdown-item" href="#">
-                            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Profile
-                        </a>
-                        <div class="dropdown-divider"></div>
+                        aria-labelledby="userDropdown">                
                         <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                             Logout

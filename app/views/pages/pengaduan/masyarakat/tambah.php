@@ -1,4 +1,7 @@
 <div class="container-fluid">
+    <div class="my-3">
+        <?php Flasher::flash(); ?>
+    </div>
     <div class="card shadow mb-4">
         <form action="<?= BASE_URL ?>/pengaduan/store" method="post" enctype="multipart/form-data">
             <div class="card-header py-3">

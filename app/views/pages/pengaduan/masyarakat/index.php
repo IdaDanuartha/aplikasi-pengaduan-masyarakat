@@ -25,7 +25,7 @@
                             <td><?= ++$key ?></td>
                             <td><?= date_format(date_create($value['created_at']), "d M Y") ?></td>
                             <td><?= date_format(date_create($value['created_at']), "H.i") ?></td>
-                            <td class="text-capitalize"><?= $value['status'] ?></td>
+                            <td class="text-capitalize"><?= $value['status'] === 'masuk' ? 'Belum diproses' : $value['status'] ?></td>
                             <td>
                                 <a href="#" class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#detailPengaduan<?= $value['id'] ?>Modal">Detail</a>
                                 <a href="<?= BASE_URL ?>/pengaduan/edit/<?= $value['id'] ?>" class="btn btn-warning btn-sm mr-2">Edit</a>
@@ -45,21 +45,21 @@
                                 </div>
                                 <div class="modal-body">
                                     <img src="<?= BASE_URL ?>/uploads/pengaduan/<?= $value['gambar'] ?>" width="300" class="rounded" alt="">
-                                    <div class="form-group my-3">
-                                        <label>Laporan Pengaduan</label>
-                                        <textarea rows="4" class="form-control" readonly><?= $value['laporan'] ?></textarea>
-                                    </div>
-                                    <?php if($value['tanggapan']) : ?>
-                                    <hr>
                                         <div class="form-group my-3">
-                                            <label>Tanggapan</label>
-                                            <textarea rows="4" class="form-control" readonly><?= $value['tanggapan'] ?></textarea>
+                                            <label>Laporan Pengaduan</label>
+                                            <textarea rows="4" class="form-control" readonly><?= $value['laporan'] ?></textarea>
                                         </div>
-                                    <?php endif; ?>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
+                                        <?php if($value['tanggapan']) : ?>
+                                        <hr>
+                                            <div class="form-group my-3">
+                                                <label>Tanggapan</label>
+                                                <textarea rows="4" class="form-control" readonly><?= $value['tanggapan'] ?></textarea>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

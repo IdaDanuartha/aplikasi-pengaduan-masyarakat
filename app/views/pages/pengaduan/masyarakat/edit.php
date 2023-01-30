@@ -1,4 +1,7 @@
 <div class="container-fluid">
+    <div class="my-3">
+        <?php Flasher::flash(); ?>
+    </div>
     <div class="card shadow mb-4">
         <form action="<?= BASE_URL ?>/pengaduan/update/<?= $data['pengaduan']['id'] ?>" method="post" enctype="multipart/form-data">
             <input type="hidden" name="old_gambar" value="<?= $data['pengaduan']['gambar'] ?>" class="form-control mt-3">

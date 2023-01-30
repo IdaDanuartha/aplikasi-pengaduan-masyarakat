@@ -19,7 +19,7 @@
         rel="stylesheet">
     <link href="<?= BASE_URL ?>/assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <!-- Custom styles for this template-->
-    <link href="<?= BASE_URL ?>/assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="<?= BASE_URL ?>/assets/css/sb-admin-2.css" rel="stylesheet">
 
 </head>
 

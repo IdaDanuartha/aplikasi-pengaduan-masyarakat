@@ -35,11 +35,10 @@ var myBarChart = new Chart(ctx, {
     labels: ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"],
     datasets: [{
       label: "Revenue",
-      backgroundColor: "#4e73df",
-      hoverBackgroundColor: "#2e59d9",
-      borderColor: "#4e73df",
-      data: [4215, 5312, 6251, 7841, 9821, 14984],
-      
+      backgroundColor: "#6c63ff",
+      hoverBackgroundColor: "#6c63ff",
+      borderColor: "#6c63ff",
+      data: [4215, 5312, 6251, 7841, 9821, 14984, 8000],      
     }],
   },
   options: {
