@@ -37,6 +37,14 @@ class Pengaduan {
         return $this->db->all();
     }
 
+    public function getByUser()
+    {
+        $this->db->query("SELECT * FROM {$this->table} WHERE user_id = :user_id");
+        $this->db->bind("user_id", $_SESSION['user_session']['id']);
+        
+        return $this->db->all();
+    }
+
     public function pengaduanDetail($id)
     {
         $this->db->query("SELECT {$this->table}.*, {$this->table2}.nama 
@@ -47,6 +55,29 @@ class Pengaduan {
                         ");
         $this->db->bind("id", $id);
         
+        return $this->db->single();
+    }
+
+    public function store($data, $fileName)
+    {
+        $this->db->query("INSERT INTO {$this->table}  VALUES (null, :user_id, :laporan, :gambar, :status, :created_at, :updated_at)");
+
+        $this->db->bind("user_id", $_SESSION['user_session']['id']);
+        $this->db->bind("laporan", $data['laporan']);
+        $this->db->bind("gambar", $fileName);
+        $this->db->bind("status", 'masuk');
+        $this->db->bind("created_at", date('Y-m-d H:i:s'));
+        $this->db->bind("updated_at", date('Y-m-d H:i:s'));
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function edit($id)
+    {
+        $this->db->query("SELECT * FROM {$this->table} WHERE id=:id");
+        $this->db->bind("id", $id);
+
         return $this->db->single();
     }
 }

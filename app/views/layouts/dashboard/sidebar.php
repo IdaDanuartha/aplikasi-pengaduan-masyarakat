@@ -26,19 +26,35 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-                <a class="collapse-item <?= CURRENT_URL == BASE_URL . '/pengaduan/masuk' || CURRENT_URL == BASE_URL . '/pengaduan/masuk/index' ? 'active' : '' ?>" href="<?= BASE_URL ?>/pengaduan/masuk">Pengaduan Masuk</a>
-                <a class="collapse-item <?= CURRENT_URL == BASE_URL . '/pengaduan/proses' || CURRENT_URL == BASE_URL . '/pengaduan/proses/index' ? 'active' : '' ?>" href="<?= BASE_URL ?>/pengaduan/proses">Pengaduan Diproses</a>
-                <a class="collapse-item <?= CURRENT_URL == BASE_URL . '/pengaduan/tolak' || CURRENT_URL == BASE_URL . '/pengaduan/tolak/index' ? 'active' : '' ?>" href="<?= BASE_URL ?>/pengaduan/tolak">Pengaduan Ditolak</a>
-                <a class="collapse-item <?= CURRENT_URL == BASE_URL . '/pengaduan/selesai' || CURRENT_URL == BASE_URL . '/pengaduan/selesai/index' ? 'active' : '' ?>" href="<?= BASE_URL ?>/pengaduan/selesai">Pengaduan Selesai</a>
+                <?php if($_SESSION['user_session']['level'] !== 'masyarakat') : ?>
+                    <a class="collapse-item <?= CURRENT_URL == BASE_URL . '/pengaduan/masuk' ? 'active' : '' ?>" href="<?= BASE_URL ?>/pengaduan/masuk">Pengaduan Masuk</a>
+                    <a class="collapse-item <?= CURRENT_URL == BASE_URL . '/pengaduan/proses' ? 'active' : '' ?>" href="<?= BASE_URL ?>/pengaduan/proses">Pengaduan Diproses</a>
+                    <a class="collapse-item <?= CURRENT_URL == BASE_URL . '/pengaduan/tolak' ? 'active' : '' ?>" href="<?= BASE_URL ?>/pengaduan/tolak">Pengaduan Ditolak</a>
+                    <a class="collapse-item <?= CURRENT_URL == BASE_URL . '/pengaduan/selesai' ? 'active' : '' ?>" href="<?= BASE_URL ?>/pengaduan/selesai">Pengaduan Selesai</a>
+                <?php endif; ?>
+                <?php if($_SESSION['user_session']['level'] === 'masyarakat') : ?>
+                    <a class="collapse-item <?= CURRENT_URL == BASE_URL . '/pengaduan/masyarakat' ? 'active' : '' ?>" href="<?= BASE_URL ?>/pengaduan/masyarakat">Pengaduan Saya</a>
+                    <a class="collapse-item <?= CURRENT_URL == BASE_URL . '/pengaduan/tambah' ? 'active' : '' ?>" href="<?= BASE_URL ?>/pengaduan/tambah">Tambah Pengaduan</a>
+                <?php endif; ?>
             </div>
         </div>
     </li>
 
-    <li class="nav-item <?= CURRENT_URL == BASE_URL . '/petugas' || CURRENT_URL == BASE_URL . '/petugas/index' ? 'active' : '' ?>">
-        <a class="nav-link" href="<?= BASE_URL ?>/petugas">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Petugas</span></a>
-    </li>
+    <?php if($_SESSION['user_session']['level'] === 'admin') : ?>
+        <li class="nav-item <?= CURRENT_URL == BASE_URL . '/petugas' || CURRENT_URL == BASE_URL . '/petugas/index' ? 'active' : '' ?>">
+            <a class="nav-link" href="<?= BASE_URL ?>/petugas">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Petugas</span></a>
+        </li>
+    <?php endif; ?>
+
+    <?php if($_SESSION['user_session']['level'] !== 'admin') : ?>
+        <li class="nav-item <?= CURRENT_URL == BASE_URL . '/profile' || CURRENT_URL == BASE_URL . '/profile/index' ? 'active' : '' ?>">
+            <a class="nav-link" href="<?= BASE_URL ?>/profile">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Profile</span></a>
+        </li>
+    <?php endif; ?>
 
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none mt-4 d-md-inline">
@@ -107,7 +123,7 @@
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['user_session']['nama'] ?></span>
                         <img class="img-profile rounded-circle"
                             src="<?= BASE_URL ?>/assets/img/undraw_profile.svg">
                     </a>

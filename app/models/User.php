@@ -25,7 +25,7 @@ class User {
     {
         $hash = password_hash($data['password'], PASSWORD_DEFAULT);
 
-        $this->db->query("call storeMasyarakat(:nama, :username, :password, :level)");
+        $this->db->query("call storeUser(:nama, :username, :password, :level)");
 
         $this->db->bind('nama', $data['nama']);
         $this->db->bind('username', $data['username']);

@@ -33,7 +33,7 @@ class PetugasController extends Controller {
         $filename = date("dmyhis") . '_' . basename($_FILES['profile_picture']['name']);
     
         // Location
-        $target_file = "./uploads/$filename";
+        $target_file = "./uploads/users/$filename";
 
         // file extension
         $file_extension = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
