@@ -28,7 +28,7 @@ class Pengaduan {
                             FROM {$this->table} 
                             INNER JOIN {$this->table2} 
                             ON {$this->table2}.id = {$this->table}.user_id
-                            INNER JOIN {$this->table3} 
+                            LEFT JOIN {$this->table3} 
                             ON {$this->table3}.pengaduan_id = {$this->table}.id 
                             WHERE {$this->table}.status = :status
                         ");

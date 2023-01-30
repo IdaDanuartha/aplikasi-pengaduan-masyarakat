@@ -12,7 +12,7 @@
                 <div class="badge badge-success position-absolute" style="top: 10px; right: 10px;">
                     <?= date_format(date_create($value['created_at']), 'd M Y') ?>
                 </div>
-                    <img src="https://picsum.photos/400/300" class="card-img-top" alt="...">
+                <img src="<?= BASE_URL ?>/uploads/pengaduan/<?= $value['gambar'] ?>" class="card-img-top" alt="...">
                     <div class="card-body">
                         <div class="mb-1 d-flex">
                             <h6 class="font-weight-bold mr-2">Pelapor : </h6>
