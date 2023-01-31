@@ -47,7 +47,7 @@
         </div>
         <div class="form-group mb-3">
             <label for="tanggapan" class="d-block">Tanggapan</label>
-            <textarea name="tanggapan" class="form-control" required id="tanggapan" rows="7" style="width:
+            <textarea name="tanggapan" required class="form-control" required id="tanggapan" rows="7" style="width:
             500px"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>

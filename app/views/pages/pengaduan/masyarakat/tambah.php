@@ -10,11 +10,11 @@
             <div class="py-3">
                 <div class="form-group mb-4 col-md-6 col-12">
                     <img src="https://picsum.photos/200" alt="" class="rounded">
-                    <input type="file" name="gambar" class="form-control mt-3">
+                    <input type="file" required name="gambar" class="form-control mt-3">
                 </div>
                 <div class="form-group mb-4 col-md-6 col-12">
                     <label for="nama" class="form-label">Laporan</label>
-                    <textarea name="laporan" class="form-control" rows="7"></textarea>
+                    <textarea name="laporan" required class="form-control" rows="7"></textarea>
                 </div>
                 <button class="btn btn-primary ml-2" type="submit">Tambah</button> 
             </div> 

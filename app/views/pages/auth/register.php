@@ -15,16 +15,16 @@
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user"
                         id="name" name="nama"
-                        placeholder="Enter Name">
+                        placeholder="Enter Full Name" required>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control form-control-user"
                         id="username" name="username"
-                        placeholder="Enter Username">
+                        placeholder="Enter Username" required>
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control form-control-user" name="password"
-                        id="password" placeholder="Enter Password">
+                        id="password" placeholder="Enter Password" required>
                 </div>
                 <!-- <div class="form-group">
                     <input type="confirm_password" name="confirm_password" class="form-control form-control-user"

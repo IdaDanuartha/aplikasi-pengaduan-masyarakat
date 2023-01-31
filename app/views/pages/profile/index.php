@@ -23,11 +23,11 @@
                     </div>
                     <div class="form-group mb-4">
                         <label class="d-block text-primary">Nama</label>
-                        <input type="text" class="form-control" name="nama" value="<?= $_SESSION['user_session']['nama'] ?>">
+                        <input type="text" class="form-control" name="nama" required value="<?= $_SESSION['user_session']['nama'] ?>">
                     </div>
                     <div class="form-group mb-4">
                         <label class="d-block text-primary">Username</label>
-                        <input type="text" class="form-control" name="username" value="<?= $_SESSION['user_session']['username'] ?>">
+                        <input type="text" class="form-control" name="username" required value="<?= $_SESSION['user_session']['username'] ?>">
                     </div>
                 </div> 
                 <div class="col-lg-6 col-12">
