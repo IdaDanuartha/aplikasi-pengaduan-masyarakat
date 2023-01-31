@@ -7,10 +7,10 @@
         <?php Flasher::flash(); ?>
     </div>
     <?php if(count($data['pengaduan']) > 0) : ?>
-    <div class="row row-cols-5 g-4">
+    <div class="row row-cols-4 g-4">
         <?php foreach($data['pengaduan'] as $key => $value) : ?>
             <div class="col">
-                <div class="card position-relative" style="width: 18rem;">
+                <div class="card position-relative">
                 <div class="badge badge-success position-absolute" style="top: 10px; right: 10px;">
                     <?= date_format(date_create($value['created_at']), 'd M Y') ?>
                 </div>

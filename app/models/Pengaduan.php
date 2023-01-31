@@ -23,6 +23,12 @@ class Pengaduan {
         return $this->db->all();
     }
 
+    public function getCurrentWeek()
+    {
+        $this->db->query("SELECT * FROM {$this->table} WHERE week(created_at)=week(now())");
+        return $this->db->all();
+    }
+
     public function getByStatus($status)
     {
         $this->db->query("SELECT {$this->table}.*, {$this->table2}.nama, {$this->table3}.tanggapan

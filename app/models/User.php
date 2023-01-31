@@ -100,18 +100,38 @@ class User {
 
     public function update($id, $data, $fileName)
     {
-        $user = $this->findUserByUsername($data['username']);
-        $hash = password_hash($data['password'], PASSWORD_DEFAULT);
+        // $user = $this->findUserByUsername($data['username']);
+        // $hash = password_hash($data['password'], PASSWORD_DEFAULT);
 
-        dd($user['password']);
         $this->db->query("UPDATE {$this->table} SET
                             nama=:nama,
-                            username=:username                                                        
+                            username=:username,
+                            profile_picture=:profile_picture                                                   
                             WHERE id=:id");
 
         $this->db->bind("nama", $data['nama']);
         $this->db->bind("username", $data['username']);
-        $this->db->bind("password", $hash ?? $user['password']);
+        // $this->db->bind("password", $hash ?? $user['password']);
+        $this->db->bind("profile_picture", $fileName ?? $data['old_profile_picture']);
+        $this->db->bind("id", $id);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function updateProfile($id, $data, $fileName)
+    {
+        // $user = $this->findUserByUsername($data['username']);
+        // $hash = password_hash($data['new_password'], PASSWORD_DEFAULT);
+        $this->db->query("UPDATE {$this->table} SET
+                        nama=:nama,
+                        username=:username,
+                        profile_picture=:profile_picture                                                        
+                        WHERE id=:id");
+
+        $this->db->bind("nama", $data['nama']);
+        $this->db->bind("username", $data['username']);
+        // $this->db->bind("password", $hash ?? $user['old_password']);
         $this->db->bind("profile_picture", $fileName ?? $data['old_profile_picture']);
         $this->db->bind("id", $id);
         $this->db->execute();

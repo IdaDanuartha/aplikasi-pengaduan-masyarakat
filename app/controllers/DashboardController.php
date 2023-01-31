@@ -8,7 +8,7 @@ class DashboardController extends Controller {
             $data['total_pengaduan_masuk'] = count($this->model("Pengaduan")->getByStatus("masuk"));
             $data['total_pengaduan_diproses'] = count($this->model("Pengaduan")->getByStatus("proses"));
             $data['total_pengaduan_ditolak'] = count($this->model("Pengaduan")->getByStatus("tolak"));
-            $data['total_pengaduan_selesai'] = count($this->model("Pengaduan")->getByStatus("selesai"));
+            $data['total_pengaduan_selesai'] = count($this->model("Pengaduan")->getByStatus("selesai"));            
 
             $this->view("layouts/dashboard/header", $data);
             $this->view("layouts/dashboard/sidebar");

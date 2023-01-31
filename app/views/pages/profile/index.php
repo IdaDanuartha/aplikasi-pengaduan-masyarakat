@@ -1,6 +1,12 @@
 <div class="container-fluid">
+    <div class="my-3">
+        <?php Flasher::flash(); ?>
+    </div>
     <div class="card shadow mb-4">
-        <form action="<?= BASE_URL ?>/pengaduan/store" method="post" enctype="multipart/form-data">
+        <form action="<?= BASE_URL ?>/profile/update/<?= $_SESSION['user_session']['id'] ?>" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?= $_SESSION['user_session']['id'] ?>">
+            <input type="hidden" name="old_profile_picture" value="<?= $_SESSION['user_session']['profile_picture'] ?>">
+            <input type="hidden" name="level" value="<?= $_SESSION['user_session']['level'] ?>">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Profile Saya</h6>
             </div> 
@@ -8,12 +14,12 @@
                 <div class="col-lg-6 col-12">
                     <div class="form-group mb-4">
                         <label class="d-block text-primary">Profile Picture</label>
-                        <?php if(isset($_SESSION['user_session']['gambar'])) : ?>
-                            <img src="<?= $_SESSION['user_session']['gambar'] ?>" width="150" alt="" class="rounded">
+                        <?php if(isset($_SESSION['user_session']['profile_picture'])) : ?>
+                            <img src="<?= BASE_URL ?>/uploads/users/<?= $_SESSION['user_session']['profile_picture'] ?>" width="150" alt="" class="rounded">
                         <?php else : ?>
-                            <img src="<?= BASE_URL ?>/assets/img/undraw_profile_1.svg" width="150" alt="" class="rounded">
+                            <img src="<?= BASE_URL ?>/assets/img/undraw_profile_2.svg" width="150" alt="" class="rounded">
                         <?php endif; ?>
-                        <input type="file" name="gambar" class="form-control mt-3">
+                        <input type="file" name="profile_picture" class="form-control mt-3">
                     </div>
                     <div class="form-group mb-4">
                         <label class="d-block text-primary">Nama</label>

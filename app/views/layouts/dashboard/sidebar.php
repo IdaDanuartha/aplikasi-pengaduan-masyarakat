@@ -22,7 +22,7 @@
     <?php if($_SESSION['user_session']['level'] === 'masyarakat') : ?>
         <li class="nav-item <?= CURRENT_URL == BASE_URL . '/pengaduan/masyarakat' ? 'active' : '' ?>">
             <a class="nav-link" href="<?= BASE_URL ?>/pengaduan/masyarakat">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
+            <i class="fa-solid fa-comment-dots"></i>
                 <span>Pengaduan Saya</span></a>
         </li>
     <?php endif; ?>
@@ -31,7 +31,7 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                 aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-cog"></i>
+                <i class="fa-solid fa-comment-dots"></i>
                 <span>Pengaduan</span>
             </a>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -49,7 +49,7 @@
     <?php if($_SESSION['user_session']['level'] === 'admin') : ?>
         <li class="nav-item <?= CURRENT_URL == BASE_URL . '/petugas' || CURRENT_URL == BASE_URL . '/petugas/index' ? 'active' : '' ?>">
             <a class="nav-link" href="<?= BASE_URL ?>/petugas">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
+            <i class="fa-solid fa-user-shield"></i>
                 <span>Petugas</span></a>
         </li>
     <?php endif; ?>
@@ -57,7 +57,7 @@
     <?php if($_SESSION['user_session']['level'] !== 'admin') : ?>
         <li class="nav-item <?= CURRENT_URL == BASE_URL . '/profile' || CURRENT_URL == BASE_URL . '/profile/index' ? 'active' : '' ?>">
             <a class="nav-link" href="<?= BASE_URL ?>/profile">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
+            <i class="fa-solid fa-user-gear"></i>
                 <span>Profile</span></a>
         </li>
     <?php endif; ?>
@@ -130,9 +130,9 @@
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $_SESSION['user_session']['nama'] ?></span>
-                        <?php if(isset($_SESSION['user_session']['gambar'])) : ?>
+                        <?php if(isset($_SESSION['user_session']['profile_picture'])) : ?>
                             <img class="img-profile rounded-circle"
-                            src="<?= BASE_URL ?>/uploads/users/<?= $_SESSION['user_session']['gambar'] ?>">
+                            src="<?= BASE_URL ?>/uploads/users/<?= $_SESSION['user_session']['profile_picture'] ?>">
                         <?php else : ?>
                             <img class="img-profile rounded-circle"
                             src="<?= BASE_URL ?>/assets/img/undraw_profile_2.svg">

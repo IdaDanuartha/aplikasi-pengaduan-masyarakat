@@ -1,4 +1,4 @@
-Options -Multiviews -Indexes
+Options -Multiviews
 
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-d
