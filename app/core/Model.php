@@ -10,6 +10,7 @@ class Model {
 
     public function __construct()
     {
+        date_default_timezone_set('Asia/Kuala_Lumpur');
         $dsn = "mysql:host={$this->host};dbname={$this->db_name}";
         $options = [
             PDO::ATTR_PERSISTENT => true,

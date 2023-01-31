@@ -5,7 +5,7 @@
     </div>
 
     <div class="form-group mb-3 d-flex">
-    <img src="<?= BASE_URL ?>/uploads/pengaduan/<?= $data['pengaduan']['gambar'] ?>" width="200" class="" alt="...">
+    <img src="<?= BASE_URL ?>/uploads/pengaduan/<?= $data['pengaduan']['gambar'] ?>" width="300" class="" alt="...">
         <div class="ml-3 p-3 rounded text-white bg-primary">
             <div class="mb-3 d-flex">
                 <h6 class="font-weight-bold mr-2">Tanggal Pengaduan : </h6>
