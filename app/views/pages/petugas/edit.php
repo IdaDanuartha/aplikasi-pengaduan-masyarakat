@@ -11,7 +11,7 @@
             <div class="py-3">
                 <div class="form-group mb-4 col-md-6 col-12">
                     <img src="<?= BASE_URL ?>/uploads/users/<?= $data['petugas']['profile_picture'] ?>" width="200" alt="" class="rounded">
-                    <input type="file" required name="profile_picture" class="form-control mt-3">
+                    <input type="file" name="profile_picture" class="form-control mt-3">
                 </div>
                 <div class="form-group mb-4 col-md-6 col-12">
                     <label for="nama" class="form-label">Nama Petugas</label>
