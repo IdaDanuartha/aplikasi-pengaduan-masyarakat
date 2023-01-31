@@ -117,6 +117,10 @@ class Pengaduan {
         $this->db->bind("id", $id);
         $this->db->execute();
 
+        $this->db->query("DELETE FROM {$this->table3} WHERE pengaduan_id=:pengaduan_id");
+        $this->db->bind("pengaduan_id", $id);
+        $this->db->execute();
+
         return $this->db->rowCount();
     }
 }

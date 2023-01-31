@@ -181,13 +181,17 @@ class PengaduanController extends Controller {
 
         // Path
         $path = "./uploads/pengaduan/" . $filename;        
-             
-        if($this->model("Pengaduan")->destroy($id) > 0) { 
-            unlink($path);           
-            Flasher::setFlash("Pengaduan berhasil dihapus", "success");
+        if($pengaduan['status'] !== 'proses') {
+            if($this->model("Pengaduan")->destroy($id) > 0) { 
+                unlink($path);           
+                Flasher::setFlash("Pengaduan berhasil dihapus", "success");
+            } else {
+                Flasher::setFlash("Pengaduan gagal dihapus", "danger");
+            }
         } else {
-            Flasher::setFlash("Pengaduan gagal dihapus", "danger");
+            Flasher::setFlash("Pengaduan tidak bisa dihapus jika sudah diproses", "danger");
         }
+
         redirect("pengaduan/masyarakat");
     }
 }
